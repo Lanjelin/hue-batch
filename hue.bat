@@ -1,7 +1,7 @@
 :: To make this script work, you need to download cURL with SSL Support, aswell as the OPENSSL dlls
 :: from http://www.paehl.com/open_source/?CURL_7.37.0 and place them in the same folder as this script.
 :: The process to obtain your secret key is explained here: http://developers.meethue.com/gettingstarted.html
-@echo off&cls
+@echo off::&cls
 setlocal EnableDelayedExpansion
 for /f "tokens=3 delims=:" %%i in ('curl -X GET https://www.meethue.com/api/nupnp -k -s') do set _hueip=%%i
 for /f "tokens=1 delims= " %%i in ('echo %_hueip%') do set _hueip=%%i
