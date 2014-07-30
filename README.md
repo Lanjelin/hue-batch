@@ -42,4 +42,5 @@ call hue.bat
 ```
 
 TODO:
-Figure a better way to handle bridge IP, avoid searching every time hue.bat is called.
+* Figure a better way to handle bridge IP, avoid searching every time hue.bat is called.
+* Can I make it accept several actions at the same call?
