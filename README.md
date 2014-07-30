@@ -8,7 +8,7 @@ To make this script work, you need to download <a href="http://www.paehl.com/ope
 
 The process to obtain your secret key is explained at <a href="http://developers.meethue.com/gettingstarted.html">developers.meethue.com</a>.
 
-A sample.bat is included as a demonstration on how to build .bat files, just edit line 2 with you own
+A demo.bat is included as a demonstration on how to build .bat files, just edit line 2 with you own
 secret key, and you're good to go. The script looks up https://www.meethue.com/api/nupnp to get your bridge ip.
 
 
