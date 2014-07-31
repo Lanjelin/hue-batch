@@ -25,6 +25,7 @@ Available commands are
 -c xxx     	::Set color temperature, 153-500
 -a xxxxx  	::Alert effect, temp change state, none select (one flash) or lseslect (30sec flash or intill set to none)
 -e xxxx   	::Dynamic effect, none or colorloop (loops colors till set to none)
+-t xxx      ::Transitiontime, n multiple of 100ms, default 4 (400ms), setting to 0 makes it instant
 -status     ::Print status of selected lights
 -random     ::Do a random color show on selected lights, puts sat and bri to 255, transitiontime 0
 ```
