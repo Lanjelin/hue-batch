@@ -16,7 +16,7 @@ Available commands are
 ```batch
 ::Required
 -k xxx		::secret key goes here
--l "x x x"	::ID of lights, seperated by a space
+-l "x x x"	::ID of lights, seperated by a space and with surrounding quotes
 ::Choose either of below
 -on xxxx	::Put lamps on or off, true or false
 -h xxxxx	::Set hue, 0-65535
