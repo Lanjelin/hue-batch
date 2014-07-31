@@ -36,9 +36,8 @@ To put light 2 and 5 on, set hue to 25500, sat to 212 you would need to do as fo
 hue.bat -k lanjelinapi -l "2 5" -on true -h 25500 -s 212
 ```
 It supports changing lights independent aswell, in the same launch.
+
 Below is an example to set bri and sat of light 1,2,3 to 255, then red, blue and green on each of the lights.
 ```batch
 hue.bat -k lanjelinapi -l "1 2 3" -on true -s 255 -b 255 -l "1" -h 25500 -l "2" -h 46920 -l "3" -h 65535
 ```
-TODO:
-* I've forgotten transitiontime, gotta add that.
