@@ -20,12 +20,11 @@ IF "%~1"=="-b" set _huebri=%2 & set _hueaction=bri & call :huego
 IF "%~1"=="-c" set _huect=%2 & set _hueaction=ct & call :huego
 IF "%~1"=="-a" set _huealert=%2 & set _hueaction=alert & call :huego
 IF "%~1"=="-e" set _hueeffect=%2 & set _hueaction=effect & call :huego
-IF "%~1"=="-s" set _hueaction=status & call :huego & goto skipashift
-IF "%~1"=="-r" set _hueaction=random & call :huego & goto skipashift
+IF "%~1"=="-status" set _hueaction=status & call :huego & goto skipashift
+IF "%~1"=="-random" set _hueaction=random & call :huego & goto skipashift
 SHIFT
 :skipashift
 SHIFT
-pause
 goto parse
 
 :: Off we go then
