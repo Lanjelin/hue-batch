@@ -8,39 +8,36 @@ To make this script work, you need to download <a href="http://www.paehl.com/ope
 
 The process to obtain your secret key is explained at <a href="http://developers.meethue.com/gettingstarted.html">developers.meethue.com</a>.
 
-A demo.bat is included as a demonstration on how to build .bat files, just edit line 2 with you own
-secret key, and you're good to go. The script looks up https://www.meethue.com/api/nupnp to get your bridge ip.
+The script looks up https://www.meethue.com/api/nupnp to get your bridge ip.
 
 
 Available commands are
 
 ```batch
-set _huekey=		::secret key goes here
-set _huelights= 	::ID of lights, seperated by a space
-set _hueaction=		::What action to perform, on/hue/sat/bri/ct/alert/effect/status/random
-set _hueon=			::Put lamps on or off, true or false
-set _huehue=		::Set hue, 0-65535
-set _huesat=		::Set saturation, 0-255
-set _huebri=		::Set brightness, 0-255
-set _huect=     	::Set color temperature, 153-500
-set _huealert=  	::Alert effect, temp change state, none select (one flash) or lseslect (30sec flash or intill set to none)
-set _hueeffect=		::Dynamic effect, none or colorloop (loops colors till set to none)
-call hue.bat    	::When necessary variables are set, you are read to call the api to perform the action defined in _hueaction
+::Required
+-key xxx		::secret key goes here
+-lights "x x x"	::ID of lights, seperated by a space
+::Choose either of below
+-on xxxx		::Put lamps on or off, true or false
+-hue xxxxx		::Set hue, 0-65535
+-sat xxx		::Set saturation, 0-255
+-bri xxx		::Set brightness, 0-255
+-ct xxx     	::Set color temperature, 153-500
+-alert xxxxx  	::Alert effect, temp change state, none select (one flash) or lseslect (30sec flash or intill set to none)
+-effect xxxx	::Dynamic effect, none or colorloop (loops colors till set to none)
+-status       ::Print status of selected lights
+-random       ::Do a random color show on selected lights, puts sat and bri to 255, transitiontime 0
 ```
 
 
-To put light 2 and 5 on, set hue to 25500, you would need to do as follows.
+To put light 2 and 5 on, set hue to 25500, sat to 212 you would need to do as follows.
 ```batch
-set _huekey=lanjelinapi
-set _huelights=2 5
-set _hueon=true
-set _huehue=25500
-set _hueaction=on
-call hue.bat
-set _hueaction=hue
-call hue.bat
+hue.bat -key lanjelinapi -lights "2 5" -on true -hue 25500 -sat 212
 ```
-
+It supports changing lights independent aswell, in the same launch.
+Below is an example to set bri and sat of light 1,2,3 to 255, then red, blue and green on each of the lights.
+```batch
+hue.bat -key lanjelinapi -lights "1 2 3" -on true -sat 255 -bri 255 -lights "1" -hue 25500 -lights "2" -hue 46920 -lights "3" -hue 65535
+```
 TODO:
-* Figure a better way to handle bridge IP, avoid searching every time hue.bat is called.
-* Can I make it accept several actions at the same call?
+* I've forgotten transitiontime, gotta add that.
