@@ -14,7 +14,7 @@ The script looks up https://www.meethue.com/api/nupnp to get your bridge ip.
 Available commands are
 
 ```batch
-::Required
+::Required, and needs to be the first two to be set
 -k xxx		::secret key goes here
 -l "x x x"	::ID of lights, seperated by a space and with surrounding quotes
 ::Choose either of below
