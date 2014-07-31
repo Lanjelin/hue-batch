@@ -15,29 +15,29 @@ Available commands are
 
 ```batch
 ::Required
--key xxx		::secret key goes here
--lights "x x x"	::ID of lights, seperated by a space
+-k xxx		::secret key goes here
+-l "x x x"	::ID of lights, seperated by a space
 ::Choose either of below
--on xxxx		::Put lamps on or off, true or false
--hue xxxxx		::Set hue, 0-65535
--sat xxx		::Set saturation, 0-255
--bri xxx		::Set brightness, 0-255
--ct xxx     	::Set color temperature, 153-500
--alert xxxxx  	::Alert effect, temp change state, none select (one flash) or lseslect (30sec flash or intill set to none)
--effect xxxx	::Dynamic effect, none or colorloop (loops colors till set to none)
--status       ::Print status of selected lights
--random       ::Do a random color show on selected lights, puts sat and bri to 255, transitiontime 0
+-on xxxx	::Put lamps on or off, true or false
+-h xxxxx	::Set hue, 0-65535
+-s xxx		::Set saturation, 0-255
+-b xxx		::Set brightness, 0-255
+-c xxx     	::Set color temperature, 153-500
+-a xxxxx  	::Alert effect, temp change state, none select (one flash) or lseslect (30sec flash or intill set to none)
+-e xxxx   	::Dynamic effect, none or colorloop (loops colors till set to none)
+-s          ::Print status of selected lights
+-r          ::Do a random color show on selected lights, puts sat and bri to 255, transitiontime 0
 ```
 
 
 To put light 2 and 5 on, set hue to 25500, sat to 212 you would need to do as follows.
 ```batch
-hue.bat -key lanjelinapi -lights "2 5" -on true -hue 25500 -sat 212
+hue.bat -k lanjelinapi -l "2 5" -on true -h 25500 -s 212
 ```
 It supports changing lights independent aswell, in the same launch.
 Below is an example to set bri and sat of light 1,2,3 to 255, then red, blue and green on each of the lights.
 ```batch
-hue.bat -key lanjelinapi -lights "1 2 3" -on true -sat 255 -bri 255 -lights "1" -hue 25500 -lights "2" -hue 46920 -lights "3" -hue 65535
+hue.bat -k lanjelinapi -l "1 2 3" -on true -s 255 -b 255 -l "1" -h 25500 -l "2" -h 46920 -l "3" -h 65535
 ```
 TODO:
 * I've forgotten transitiontime, gotta add that.
