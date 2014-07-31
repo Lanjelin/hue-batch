@@ -20,6 +20,7 @@ IF "%~1"=="-b" set _huebri=%2 & set _hueaction=bri & call :huego
 IF "%~1"=="-c" set _huect=%2 & set _hueaction=ct & call :huego
 IF "%~1"=="-a" set _huealert=%2 & set _hueaction=alert & call :huego
 IF "%~1"=="-e" set _hueeffect=%2 & set _hueaction=effect & call :huego
+IF "%~1"=="-t" set _huetrans=%2 & set _hueaction=trans & call :huego
 IF "%~1"=="-status" set _hueaction=status & call :huego & goto skipashift
 IF "%~1"=="-random" set _hueaction=random & call :huego & goto skipashift
 SHIFT
@@ -47,6 +48,7 @@ IF %_hueaction%==bri call :bri
 IF %_hueaction%==ct call :ct
 IF %_hueaction%==alert call :alert
 IF %_hueaction%==effect call :effect
+IF %_hueaction%==trans call :trans
 IF %_hueaction%==status call :status
 IF %_hueaction%==random call :random
 :: Timer for slowing down the loop if needed(in ms)
@@ -94,6 +96,10 @@ goto eof
 
 :effect
 curl -X PUT -d "{\"effect\":\"%_hueeffect%\"}" http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/state
+goto eof
+
+:trans
+curl -X PUT -d "{\"transitiontime\":%_huetrans%}" http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/state
 goto eof
 
 :status
