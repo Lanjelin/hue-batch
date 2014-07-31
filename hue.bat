@@ -19,17 +19,17 @@ for /f "tokens=1 delims= " %%i in ('echo %_hueip%') do set _hueip=%%i
 
 :parse
 IF "%~1"=="" goto eof
-IF "%~1"=="-key" set _huekey=%2
-IF "%~1"=="-lights" set _huelights=%~2
+IF "%~1"=="-k" set _huekey=%2
+IF "%~1"=="-l" set _huelights=%~2
 IF "%~1"=="-on" set _hueon=%2 & set _hueaction=on & call :huego
-IF "%~1"=="-hue" set _huehue=%2 & set _hueaction=hue & call :huego
-IF "%~1"=="-sat" set _huesat=%2 & set _hueaction=sat & call :huego
-IF "%~1"=="-bri" set _huebri=%2 & set _hueaction=bri & call :huego
-IF "%~1"=="-ct" set _huect=%2 & set _hueaction=ct & call :huego
-IF "%~1"=="-alert" set _huealert=%2 & set _hueaction=alert & call :huego
-IF "%~1"=="-effect" set _hueeffect=%2 & set _hueaction=effect & call :huego
-IF "%~1"=="-status" set _hueaction=status & call :huego & goto skipashift
-IF "%~1"=="-random" set _hueaction=random & call :huego & goto skipashift
+IF "%~1"=="-h" set _huehue=%2 & set _hueaction=hue & call :huego
+IF "%~1"=="-s" set _huesat=%2 & set _hueaction=sat & call :huego
+IF "%~1"=="-b" set _huebri=%2 & set _hueaction=bri & call :huego
+IF "%~1"=="-c" set _huect=%2 & set _hueaction=ct & call :huego
+IF "%~1"=="-a" set _huealert=%2 & set _hueaction=alert & call :huego
+IF "%~1"=="-e" set _hueeffect=%2 & set _hueaction=effect & call :huego
+IF "%~1"=="-s" set _hueaction=status & call :huego & goto skipashift
+IF "%~1"=="-r" set _hueaction=random & call :huego & goto skipashift
 SHIFT
 :skipashift
 SHIFT
