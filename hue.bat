@@ -3,20 +3,12 @@
 :: The process to obtain your secret key is explained here: http://developers.meethue.com/gettingstarted.html
 @echo off::&cls
 setlocal EnableDelayedExpansion
+
+:: Getting IP of Bridge
 for /f "tokens=3 delims=:" %%i in ('curl -X GET https://www.meethue.com/api/nupnp -k -s') do set _hueip=%%i
 for /f "tokens=1 delims= " %%i in ('echo %_hueip%') do set _hueip=%%i
 
-::set _huekey=			::secret key goes here
-::set _huelights=1 2 3 	::ID of lights, seperated by a space
-::set _hueaction=		::What action to perform, on/hue/sat/bri/ct/alert/effect/status/random
-::set _hueon=			::Put lamps on or off, true or false
-::set _huehue=			::Set hue, 0-65535
-::set _huesat=			::Set saturation, 0-255
-::set _huebri=			::Set brightness, 0-255
-::set _huect=			::Set color temperature, 153-500
-::set _huealert=		::Alert effect, temp change state, none select (one flash) or lseslect (30sec flash or intill set to none)
-::set _hueeffect=		::Dynamic effect, none or colorloop (loops colors till set to none)
-
+:: Parsing the input
 :parse
 IF "%~1"=="" goto eof
 IF "%~1"=="-k" set _huekey=%2
@@ -110,6 +102,4 @@ echo Status light !_hueid[%_hueloop%]!
 curl -X GET http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/
 echo.
 goto eof
-
-
 :eof
