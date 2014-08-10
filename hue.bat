@@ -12,7 +12,7 @@ for /f "tokens=1 delims= " %%i in ('echo %_hueip%') do set _hueip=%%i
 :parse
 IF "%~1"=="" goto eof
 IF "%~1"=="-k" set _huekey=%2
-IF "%~1"=="-l" set _huelights=%~2
+IF "%~1"=="-l" set _huelights=%~2 & call :count
 IF "%~1"=="-on" set _hueon=%2 & set _hueaction=on & call :huego
 IF "%~1"=="-h" set _huehue=%2 & set _hueaction=hue & call :huego
 IF "%~1"=="-s" set _huesat=%2 & set _hueaction=sat & call :huego
@@ -28,17 +28,19 @@ SHIFT
 SHIFT
 goto parse
 
-:: Off we go then
-:huego
+:: Counting number of lights, putting IDs into array
+:count
 set _hueant=0
 set /a _hueloop=0
 set /a _hueinitrand=0
-:: Counting number of lights, putting IDs into array
 for %%d in (%_huelights%) do (
 	set /A _hueant=_hueant+1
 	set _hueid[!_hueant!]=%%d
 )
-:mainloop
+goto eof
+
+:: Off we go then
+:huego
 set /a _hueloop=_hueloop+1
 :: Checking what action to perform
 IF %_hueaction%==on call :on
@@ -50,13 +52,12 @@ IF %_hueaction%==alert call :alert
 IF %_hueaction%==effect call :effect
 IF %_hueaction%==trans call :trans
 IF %_hueaction%==status call :status
-IF %_hueaction%==random call :random
+IF %_hueaction%==random goto random
 :: Timer for slowing down the loop if needed(in ms)
 ::ping 10.1.1.1 -n 1 -w 100 >nul
 echo.
 if %_hueloop% GEQ !_hueant! goto eof
-goto mainloop
-goto eof
+goto huego
 
 :random
 if %_hueinitrand%==1 goto random2
@@ -67,8 +68,7 @@ SET /a _rnd=%RANDOM%*65530/32768+1
 curl -X PUT -d "{\"hue\":%_rnd%}" http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/state >nul
 echo|set /p=%_rnd% 
 if %_hueloop% GEQ !_hueant! set /a _hueloop=0
-goto mainloop
-goto eof
+goto huego
 
 :on
 curl -X PUT -d "{\"on\":%_hueon%}" http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/state
