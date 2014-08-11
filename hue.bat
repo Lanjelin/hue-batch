@@ -31,7 +31,6 @@ goto parse
 :: Counting number of lights, putting IDs into array
 :count
 set _hueant=0
-set /a _hueloop=0
 set /a _hueinitrand=0
 for %%d in (%_huelights%) do (
 	set /A _hueant=_hueant+1
@@ -41,6 +40,8 @@ goto eof
 
 :: Off we go then
 :huego
+set /a _hueloop=0
+:hueloop
 set /a _hueloop=_hueloop+1
 :: Checking what action to perform
 IF %_hueaction%==on call :on
@@ -57,7 +58,7 @@ IF %_hueaction%==random goto random
 ::ping 10.1.1.1 -n 1 -w 100 >nul
 echo.
 if %_hueloop% GEQ !_hueant! goto eof
-goto huego
+goto hueloop
 
 :random
 if %_hueinitrand%==1 goto random2
@@ -68,7 +69,7 @@ SET /a _rnd=%RANDOM%*65530/32768+1
 curl -X PUT -d "{\"hue\":%_rnd%}" http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/state >nul
 echo|set /p=%_rnd% 
 if %_hueloop% GEQ !_hueant! set /a _hueloop=0
-goto huego
+goto hueloop
 
 :on
 curl -X PUT -d "{\"on\":%_hueon%}" http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/state
