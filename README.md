@@ -4,7 +4,7 @@ hue-batch
 Windows batchfile for controlling your Philips Hue, make .bat files for simple operations like turning on and off lights,
 different colors and brightness settings, or just go wild with the random color action.
 
-To make this script work, you need to download <a href="http://www.paehl.com/open_source/?download=curl_737_0_ssl.zip">cURL with SSL Support</a>, aswell as the <a href="http://www.paehl.com/open_source/?download=libssl.zip">OPENSSL dlls</a> from <a href="http://www.paehl.com/open_source/?CURL_7.37.0">paehl.com</a> and place them in the same folder as this script.
+To make this script work, you need to download <a href="http://www.paehl.com/open_source/?download=curl_743_0_ssl.zip">cURL with SSL Support</a>, aswell as the <a href="http://www.paehl.com/open_source/?download=libssl.zip">OPENSSL dlls</a> from <a href="http://www.paehl.com/open_source/?CURL_7.43.0">paehl.com</a> and place them in the same folder as this script.
 
 The process to obtain your secret key is explained at <a href="http://www.developers.meethue.com/documentation/getting-started">developers.meethue.com</a>.
 
