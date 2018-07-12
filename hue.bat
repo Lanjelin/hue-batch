@@ -18,6 +18,7 @@ IF "%~1"=="-h" set _huehue=%2 & set _hueaction=hue & call :huego
 IF "%~1"=="-s" set _huesat=%2 & set _hueaction=sat & call :huego
 IF "%~1"=="-b" set _huebri=%2 & set _hueaction=bri & call :huego
 IF "%~1"=="-c" set _huect=%2 & set _hueaction=ct & call :huego
+IF "%~1"=="-xy" set _huexy=%2 & set _hueaction=xy & call :huego
 IF "%~1"=="-a" set _huealert=%2 & set _hueaction=alert & call :huego
 IF "%~1"=="-e" set _hueeffect=%2 & set _hueaction=effect & call :huego
 IF "%~1"=="-t" set _huetrans=%2 & set _hueaction=trans & call :huego
@@ -49,6 +50,7 @@ IF %_hueaction%==hue call :hue
 IF %_hueaction%==sat call :sat
 IF %_hueaction%==bri call :bri
 IF %_hueaction%==ct call :ct
+IF %_hueaction%==xy call :xy
 IF %_hueaction%==alert call :alert
 IF %_hueaction%==effect call :effect
 IF %_hueaction%==trans call :trans
@@ -89,6 +91,10 @@ goto eof
 
 :ct
 curl -X PUT -d "{\"ct\":%_huect%}" http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/state
+goto eof
+
+:xy
+curl -X PUT -d "{\"xy\":%_huexy%}" http://%_hueip%/api/%_huekey%/lights/!_hueid[%_hueloop%]!/state
 goto eof
 
 :alert
